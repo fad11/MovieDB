@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="search-container">
+    <form>
+      <mat-form-field style="width: 100%">
+        <input
+          type="text"
+          placeholder="Enter your movie name"
+          aria-label="Number"
+          matInput
+          [formControl]="movieControl"
+          [matAutocomplete]="auto"
+          (focus)="displayHistory($event)"
+          (keyup)="autocomplete($event)"
+        />
+        <mat-icon matSuffix fontIcon="search"></mat-icon>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let result of filteredResults"
+            (click)="navigateTo(result.id)"
+          >
+            <p>{{ result.title }}</p>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </div>
+</div>
